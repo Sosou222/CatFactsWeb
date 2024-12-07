@@ -15,5 +15,17 @@
 
             File.AppendAllText(file, textToWrite + Environment.NewLine);
         }
+
+        public static string DebugReadFile()
+        {
+            string file = Filepath + Filename;
+            if (!File.Exists(file))
+            {
+                return "File does not exist";
+            }
+
+            string output = File.ReadAllText(file);
+            return output;
+        }
     }
 }
