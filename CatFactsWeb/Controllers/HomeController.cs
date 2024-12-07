@@ -1,3 +1,4 @@
+using CatFactsWeb.Classes;
 using CatFactsWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -31,8 +32,8 @@ namespace CatFactsWeb.Controllers
         {
             var response = _httpClient.GetAsync("fact").Result;
             response.EnsureSuccessStatusCode();
-            string val = response.Content.ReadAsStringAsync().Result!;
-            TempData["CatFactValue"] = val;
+            CatFact fact = response.Content.ReadFromJsonAsync<CatFact>().Result!;
+            TempData["CatFactValue"] = fact.ToString();
             return Redirect("Index");
         }
 
