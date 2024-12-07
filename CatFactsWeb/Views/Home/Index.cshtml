@@ -4,5 +4,6 @@
 
 <div class="text-center">
     <h1 class="display-4">Get a random cat fact</h1>
-    <a class="btn btn-primary">Cat fact</a>
+    <a asp-action="ButtonClick" class="btn btn-primary">Cat fact</a>
+    <p>@TempData["CatFactValue"]</p>
 </div>

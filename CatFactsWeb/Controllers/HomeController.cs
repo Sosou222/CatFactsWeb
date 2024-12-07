@@ -23,6 +23,12 @@ namespace CatFactsWeb.Controllers
             return View();
         }
 
+        public IActionResult ButtonClick()
+        {
+            TempData["CatFactValue"] = "New String";
+            return Redirect("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
