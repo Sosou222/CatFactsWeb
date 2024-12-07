@@ -23,3 +23,7 @@ Fact:Cats step with both left legs, then both right legs when they walk or run. 
 Fact:Female cats tend to be right pawed, while male cats are more often left pawed. Interestingly, while 90% of humans are right handed, the remaining 10% of lefties also tend to be male. Length:182
 Fact:Julius Ceasar, Henri II, Charles XI, and Napoleon were all afraid of cats. Length:74
 Fact:Like birds, cats have a homing ability that uses its biological clock, the angle of the sun, and the Earth's magnetic field. A cat taken far from its home can return to it. But if a cat's owners move far from its home, the cat can't find them. Length:243
+Fact:Among many other diseases, cats can suffer from anorexia, senility, feline AIDS and acne. Length:89
+Fact:Ginger tabby cats can have freckles around their mouths and on their eyelids! Length:77
+Fact:Some common houseplants poisonous to cats include: English Ivy, iris, mistletoe, philodendron, and yew. Length:103
+Fact:In just seven years, a single pair of cats and their offspring could produce a staggering total of 420,000 kittens. Length:115

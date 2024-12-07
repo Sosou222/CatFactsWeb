@@ -9,6 +9,7 @@ namespace CatFactsWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private HttpClient _httpClient;
+        private ConnectionClient _connectionClient;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -16,6 +17,8 @@ namespace CatFactsWeb.Controllers
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://catfact.ninja");
             _httpClient.Timeout = TimeSpan.FromSeconds(2);
+
+            _connectionClient = new ConnectionClient(_httpClient);
         }
 
         public IActionResult Index()
@@ -30,12 +33,18 @@ namespace CatFactsWeb.Controllers
 
         public IActionResult ButtonClick()
         {
-            var response = _httpClient.GetAsync("fact").Result;
-            response.EnsureSuccessStatusCode();
-            CatFact fact = response.Content.ReadFromJsonAsync<CatFact>().Result!;
-            TempData["CatFactValue"] = fact.ToString();
-            FileManager.Write(fact.ToString());
-            TempData["CatFactFileDebug"] = FileManager.DebugReadFile();
+            if(_connectionClient.TryGetRandomFact(out CatFact fact))
+            {
+                TempData["CatFactValue"] = fact.ToString();
+                FileManager.Write(fact.ToString());
+                //TempData["CatFactFileDebug"] = FileManager.DebugReadFile();
+            }
+            else
+            {
+                TempData["CatFactValue"] = "Could not get catfact";
+            }
+
+            
             return Redirect("Index");
         }
 
