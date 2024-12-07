@@ -7,10 +7,14 @@ namespace CatFactsWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private HttpClient _httpClient;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri("https://catfact.ninja");
+            _httpClient.Timeout = TimeSpan.FromSeconds(2);
         }
 
         public IActionResult Index()
@@ -25,7 +29,10 @@ namespace CatFactsWeb.Controllers
 
         public IActionResult ButtonClick()
         {
-            TempData["CatFactValue"] = "New String";
+            var response = _httpClient.GetAsync("fact").Result;
+            response.EnsureSuccessStatusCode();
+            string val = response.Content.ReadAsStringAsync().Result!;
+            TempData["CatFactValue"] = val;
             return Redirect("Index");
         }
 
