@@ -34,6 +34,7 @@ namespace CatFactsWeb.Controllers
             response.EnsureSuccessStatusCode();
             CatFact fact = response.Content.ReadFromJsonAsync<CatFact>().Result!;
             TempData["CatFactValue"] = fact.ToString();
+            FileManager.Write(fact.ToString());
             return Redirect("Index");
         }
 
